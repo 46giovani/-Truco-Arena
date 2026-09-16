@@ -44,3 +44,8 @@ O jogador deve utilizar suas cartas e estratégias para vencer as rodadas e alca
 Pegue suas cartas, escolha sua jogada e mostre quem manda no Truco!
 
 **Boa sorte e TRUCO! 🃏🔥**
+
+
+
+
+Giovani e Caio
