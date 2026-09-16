@@ -1,36 +1,46 @@
-# 🃏 Baralho Arena
+# 🃏 Truco Arena
 
-Uma plataforma completa para quem ama **jogos de cartas e baralho**! 🎴
+Uma plataforma dedicada aos amantes de **Truco**! 🃏🔥
 
 ## 🎮 Sobre o Projeto
 
-O **Baralho Arena** reúne diversos jogos clássicos de cartas em uma única plataforma.
+O **Truco Arena** é uma plataforma de jogo baseada no clássico **Truco**, criada para proporcionar uma experiência simples, divertida e competitiva.
 
-Entre e divirta-se com jogos como:
+Escolha suas jogadas, monte sua estratégia e tente chegar aos **12 pontos** antes dos seus adversários!
 
-- ♠️ Truco
-- ♥️ Poker
-- ♣️ Buraco
-- ♦️ Canastra
-- 🃏 Blackjack
-- 🎯 Paciência
+## 🃏 Como Jogar
+
+O jogador participa de uma partida de Truco e deve utilizar suas cartas e estratégias para vencer as rodadas.
+
+Durante a partida, é possível:
+
+* 🃏 Jogar suas cartas
+* 📢 Pedir Truco
+* 🔥 Aumentar a aposta
+* 🧠 Criar estratégias
+* 🏆 Vencer rodadas
+* 📊 Acumular pontos
+* 👥 Jogar contra outros jogadores
 
 ## ⭐ Recursos
 
-- 👤 Jogue sozinho
-- 👥 Desafie seus amigos
-- 🧠 Crie suas próprias estratégias
-- 🏆 Acumule pontos
-- 📊 Suba no ranking
-- 🃏 Escolha entre diferentes jogos de cartas
-- 🎯 Melhore suas habilidades
+* 👤 Modo contra computador
+* 👥 Modo para jogar com amigos
+* 🃏 Distribuição de cartas
+* 📢 Sistema de Truco
+* 🔥 Possibilidade de aumentar a pontuação
+* 🏆 Sistema de pontos
+* 📊 Placar da partida
+* 🎯 Sistema de vitória
 
-## 🚀 Objetivo
+## 🏆 Objetivo
 
-Criar uma plataforma divertida, simples e competitiva para reunir os melhores jogos de cartas em um só lugar.
+O objetivo do **Truco Arena** é criar uma experiência digital divertida e fácil de jogar, trazendo o clássico jogo de Truco para uma plataforma moderna.
 
-## 🏆 Entre na Arena
+O jogador deve utilizar suas cartas e estratégias para vencer as rodadas e alcançar **12 pontos**.
 
-Prepare suas cartas, escolha sua estratégia e mostre que você domina o baralho!
+## 🔥 Entre na Arena!
 
-**Boa sorte e bom jogo! 🃏🔥**
+Pegue suas cartas, escolha sua jogada e mostre quem manda no Truco!
+
+**Boa sorte e TRUCO! 🃏🔥**
