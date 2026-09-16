@@ -48,4 +48,4 @@ Pegue suas cartas, escolha sua jogada e mostre quem manda no Truco!
 
 
 
-Giovani e Caio e henrique
+Giovani e Caio
