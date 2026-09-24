@@ -13,6 +13,7 @@ TELA = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Truco Paulista")
 
 FPS = 60
+
 FONTE = pygame.font.SysFont("Arial", 24)
 FONTE_PEQUENA = pygame.font.SysFont("Arial", 18)
 FONTE_GRANDE = pygame.font.SysFont("Arial", 36, bold=True)
@@ -28,7 +29,12 @@ DOURADO = (235, 190, 60)
 BOTAO = (55, 55, 65)
 BOTAO_HOVER = (80, 80, 95)
 
-NAIPES = ["Paus", "Copas", "Espadas", "Ouros"]
+NAIPES = [
+    "Paus",
+    "Copas",
+    "Espadas",
+    "Ouros"
+]
 
 VALORES = [
     "4", "5", "6", "7",
@@ -79,7 +85,7 @@ class Carta:
 
 
 # ==========================================================
-# BARALHO
+# CRIAR BARALHO
 # ==========================================================
 
 def criar_baralho():
@@ -163,7 +169,7 @@ def desenhar_texto(
 
 
 # ==========================================================
-# BOTÃO
+# DESENHAR BOTÃO
 # ==========================================================
 
 def desenhar_botao(
@@ -331,7 +337,7 @@ def desenhar_mao(
 
 
 # ==========================================================
-# TELA DE TRUCO
+# TELA DE TRUCO DO COMPUTADOR
 # ==========================================================
 
 def tela_truco(pontos):
@@ -404,20 +410,15 @@ def tela_truco(pontos):
                 sys.exit()
 
             if (
-                evento.type
-                == pygame.MOUSEBUTTONDOWN
+                evento.type == pygame.MOUSEBUTTONDOWN
                 and evento.button == 1
             ):
 
-                if aceitar.collidepoint(
-                    evento.pos
-                ):
+                if aceitar.collidepoint(evento.pos):
 
                     return pontos
 
-                if aumentar.collidepoint(
-                    evento.pos
-                ):
+                if aumentar.collidepoint(evento.pos):
 
                     if pontos == 3:
                         return 6
@@ -428,9 +429,7 @@ def tela_truco(pontos):
                     if pontos == 9:
                         return 12
 
-                if recusar.collidepoint(
-                    evento.pos
-                ):
+                if recusar.collidepoint(evento.pos):
 
                     return 0
 
@@ -443,9 +442,7 @@ def tela_truco(pontos):
 # TRUCO DO JOGADOR
 # ==========================================================
 
-def perguntar_truco_jogador(
-    pontos
-):
+def perguntar_truco_jogador(pontos):
 
     clock = pygame.time.Clock()
 
@@ -503,14 +500,11 @@ def perguntar_truco_jogador(
                 sys.exit()
 
             if (
-                evento.type
-                == pygame.MOUSEBUTTONDOWN
+                evento.type == pygame.MOUSEBUTTONDOWN
                 and evento.button == 1
             ):
 
-                if sim.collidepoint(
-                    evento.pos
-                ):
+                if sim.collidepoint(evento.pos):
 
                     if pontos == 1:
                         return 3
@@ -524,9 +518,7 @@ def perguntar_truco_jogador(
                     if pontos == 9:
                         return 12
 
-                if nao.collidepoint(
-                    evento.pos
-                ):
+                if nao.collidepoint(evento.pos):
 
                     return pontos
 
@@ -585,12 +577,15 @@ def desenhar_mesa(
     pontos_jogador,
     pontos_computador,
     pontos_rodada,
-    numero_vaza
+    numero_vaza,
+    mostrar_carta_computador=False
 ):
 
     TELA.fill(FUNDO)
 
-    # Título
+    # ------------------------------------------------------
+    # TÍTULO
+    # ------------------------------------------------------
 
     desenhar_texto(
         "TRUCO PAULISTA",
@@ -601,7 +596,9 @@ def desenhar_mesa(
         True
     )
 
-    # Placar
+    # ------------------------------------------------------
+    # PLACAR
+    # ------------------------------------------------------
 
     pygame.draw.rect(
         TELA,
@@ -624,7 +621,9 @@ def desenhar_mesa(
         FONTE
     )
 
-    # Valor da mão
+    # ------------------------------------------------------
+    # VALOR DA MÃO
+    # ------------------------------------------------------
 
     desenhar_texto(
         f"Valor da mão: {pontos_rodada}",
@@ -635,7 +634,9 @@ def desenhar_mesa(
         True
     )
 
-    # Vira
+    # ------------------------------------------------------
+    # VIRA
+    # ------------------------------------------------------
 
     desenhar_texto(
         "VIRA",
@@ -656,7 +657,9 @@ def desenhar_mesa(
         )
     )
 
-    # Computador
+    # ------------------------------------------------------
+    # COMPUTADOR
+    # ------------------------------------------------------
 
     desenhar_texto(
         "COMPUTADOR",
@@ -667,7 +670,9 @@ def desenhar_mesa(
         True
     )
 
-    # Carta do computador
+    # ------------------------------------------------------
+    # CARTA DO COMPUTADOR
+    # ------------------------------------------------------
 
     if carta_computador:
 
@@ -678,31 +683,49 @@ def desenhar_mesa(
             95
         )
 
-        pygame.draw.rect(
-            TELA,
-            (90, 45, 120),
-            rect,
-            border_radius=10
-        )
+        if mostrar_carta_computador:
 
-        pygame.draw.rect(
-            TELA,
-            BRANCO,
-            rect,
-            3,
-            border_radius=10
-        )
+            # CORREÇÃO:
+            # Depois que o computador joga,
+            # sua carta verdadeira é mostrada.
 
-        desenhar_texto(
-            "?",
-            rect.centerx,
-            rect.centery,
-            FONTE_GRANDE,
-            BRANCO,
-            True
-        )
+            desenhar_carta(
+                carta_computador,
+                rect
+            )
 
-    # Carta do jogador jogada
+        else:
+
+            # Enquanto o jogador ainda não jogou,
+            # a carta permanece escondida.
+
+            pygame.draw.rect(
+                TELA,
+                (90, 45, 120),
+                rect,
+                border_radius=10
+            )
+
+            pygame.draw.rect(
+                TELA,
+                BRANCO,
+                rect,
+                3,
+                border_radius=10
+            )
+
+            desenhar_texto(
+                "?",
+                rect.centerx,
+                rect.centery,
+                FONTE_GRANDE,
+                BRANCO,
+                True
+            )
+
+    # ------------------------------------------------------
+    # CARTA DO JOGADOR JOGADA
+    # ------------------------------------------------------
 
     if carta_jogador:
 
@@ -716,7 +739,9 @@ def desenhar_mesa(
             )
         )
 
-    # Suas cartas
+    # ------------------------------------------------------
+    # SUAS CARTAS
+    # ------------------------------------------------------
 
     desenhar_texto(
         "SUAS CARTAS",
@@ -751,14 +776,11 @@ def esperar_clique(botao):
                 sys.exit()
 
             if (
-                evento.type
-                == pygame.MOUSEBUTTONDOWN
+                evento.type == pygame.MOUSEBUTTONDOWN
                 and evento.button == 1
             ):
 
-                if botao.collidepoint(
-                    evento.pos
-                ):
+                if botao.collidepoint(evento.pos):
 
                     return
 
@@ -783,8 +805,11 @@ def jogar_mao(
     )
 
     jogador = []
-
     computador = []
+
+    # ------------------------------------------------------
+    # DISTRIBUIR CARTAS
+    # ------------------------------------------------------
 
     for _ in range(3):
 
@@ -796,12 +821,15 @@ def jogar_mao(
             baralho.pop()
         )
 
+    # ------------------------------------------------------
+    # VIRA
+    # ------------------------------------------------------
+
     vira = baralho.pop()
 
     pontos_rodada = 1
 
     vitorias_jogador = 0
-
     vitorias_computador = 0
 
     # ======================================================
@@ -811,7 +839,6 @@ def jogar_mao(
     for numero_vaza in range(1, 4):
 
         carta_jogador = None
-
         carta_computador = None
 
         # ==================================================
@@ -853,6 +880,9 @@ def jogar_mao(
 
             TELA.fill(FUNDO)
 
+            # Computador ainda não jogou,
+            # então sua carta continua escondida.
+
             desenhar_mesa(
                 vira,
                 jogador,
@@ -865,9 +895,7 @@ def jogar_mao(
             )
 
             largura = 145
-
             altura = 100
-
             espacamento = 25
 
             total = (
@@ -884,14 +912,11 @@ def jogar_mao(
 
             rects = []
 
-            for i, carta in enumerate(
-                jogador
-            ):
+            for i, carta in enumerate(jogador):
 
                 rect = pygame.Rect(
                     x + i * (
-                        largura
-                        + espacamento
+                        largura + espacamento
                     ),
                     370,
                     largura,
@@ -904,9 +929,7 @@ def jogar_mao(
                     i == selecionada
                 )
 
-                rects.append(
-                    rect
-                )
+                rects.append(rect)
 
             desenhar_texto(
                 "Clique em uma carta para jogar",
@@ -924,13 +947,15 @@ def jogar_mao(
                     pygame.quit()
                     sys.exit()
 
+                # --------------------------------------------------
+                # MOUSE SOBRE A CARTA
+                # --------------------------------------------------
+
                 if evento.type == pygame.MOUSEMOTION:
 
                     selecionada = -1
 
-                    for i, rect in enumerate(
-                        rects
-                    ):
+                    for i, rect in enumerate(rects):
 
                         if rect.collidepoint(
                             evento.pos
@@ -938,15 +963,16 @@ def jogar_mao(
 
                             selecionada = i
 
+                # --------------------------------------------------
+                # CLICOU NA CARTA
+                # --------------------------------------------------
+
                 if (
-                    evento.type
-                    == pygame.MOUSEBUTTONDOWN
+                    evento.type == pygame.MOUSEBUTTONDOWN
                     and evento.button == 1
                 ):
 
-                    for i, rect in enumerate(
-                        rects
-                    ):
+                    for i, rect in enumerate(rects):
 
                         if rect.collidepoint(
                             evento.pos
@@ -985,6 +1011,10 @@ def jogar_mao(
                 cartas_que_vencem.append(
                     carta
                 )
+
+        # --------------------------------------------------
+        # O COMPUTADOR TENTA JOGAR UMA CARTA QUE GANHE
+        # --------------------------------------------------
 
         if cartas_que_vencem:
 
@@ -1038,25 +1068,15 @@ def jogar_mao(
 
             resultado = "Empate!"
 
-            if (
-                vitorias_jogador
-                >
-                vitorias_computador
-            ):
-
-                vitorias_jogador += 1
-
-            elif (
-                vitorias_computador
-                >
-                vitorias_jogador
-            ):
-
-                vitorias_computador += 1
-
         # ==================================================
         # MOSTRAR RESULTADO
         # ==================================================
+
+        # AQUI ESTÁ A CORREÇÃO PRINCIPAL:
+        # mostrar_carta_computador=True
+        #
+        # Isso faz a carta verdadeira do computador
+        # aparecer depois que ele jogar.
 
         desenhar_mesa(
             vira,
@@ -1066,7 +1086,8 @@ def jogar_mao(
             pontos_jogador,
             pontos_computador,
             pontos_rodada,
-            numero_vaza
+            numero_vaza,
+            mostrar_carta_computador=True
         )
 
         desenhar_texto(
@@ -1159,7 +1180,7 @@ def jogar_mao(
                 pontos_rodada = novo_valor
 
     # ======================================================
-    # RESULTADO
+    # RESULTADO DA MÃO
     # ======================================================
 
     if (
@@ -1273,8 +1294,7 @@ def tela_fim_mao(
                 sys.exit()
 
             if (
-                evento.type
-                == pygame.MOUSEBUTTONDOWN
+                evento.type == pygame.MOUSEBUTTONDOWN
                 and evento.button == 1
             ):
 
@@ -1327,7 +1347,7 @@ def tela_final(
 
         desenhar_texto(
             f"Você: {pontos_jogador} "
-            f" | Computador: {pontos_computador}",
+            f"| Computador: {pontos_computador}",
             LARGURA // 2,
             275,
             FONTE,
@@ -1367,8 +1387,7 @@ def tela_final(
                 sys.exit()
 
             if (
-                evento.type
-                == pygame.MOUSEBUTTONDOWN
+                evento.type == pygame.MOUSEBUTTONDOWN
                 and evento.button == 1
             ):
 
@@ -1399,7 +1418,6 @@ def jogar():
     while True:
 
         pontos_jogador = 0
-
         pontos_computador = 0
 
         while (
